@@ -132,7 +132,7 @@ df_4_oldest = pd.read_sql("""
                           ORDER by breed ASC;
                           """, conn2)
 ## Part 4: Aggregation
-In the next few parts, you'll query data from a table populated with Babe Ruth's career hitting statistics. You'll use aggregate functions to pull interesting information from the table that basic queries cannot track.
+In the next few parts, "you'll" query data from a table populated with Babe Ruth's career hitting statistics. You'll use aggregate functions to pull interesting information from the table that basic queries cannot track.
 
 Table Name: babe_ruth_stats
 # CodeGrade step0
