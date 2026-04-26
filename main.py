@@ -1,9 +1,9 @@
 # Introduction
 
-#In this lab assessment you will explore writing more advanced SQL queries aimed at analyzing data on a more granular level. You will be working with 3 different databases throughout the assessment.
-#- planets.db: Contains data pertaining to planets in our solar system
-#- dogs.db: Contains data pertaining to famous fictional dog characters
-# - babe_ruth.db: Contains data pertaining to Babe Ruth's baseball career statistics
+In this lab assessment you will explore writing more advanced SQL queries aimed at analyzing data on a more granular level. You will be working with 3 different databases throughout the assessment.
+- planets.db: Contains data pertaining to planets in our solar system
+- dogs.db: Contains data pertaining to famous fictional dog characters
+- babe_ruth.db: Contains data pertaining to Babe Ruth's baseball career statistics
 
 SQL (Structured Query Language) provides powerful tools for manipulating and analyzing data in relational databases. Four key operations for working with data are filtering, ordering, limiting, and grouping. These operations can be combined in a single query to perform complex data analysis and extraction tasks, allowing for powerful and flexible data manipulation.
 ## Learning Objectives
@@ -132,7 +132,7 @@ df_4_oldest = pd.read_sql("""
                           ORDER by breed ASC;
                           """, conn2)
 ## Part 4: Aggregation
-In the next few parts, "you'll" query data from a table populated with Babe Ruth's career hitting statistics. You'll use aggregate functions to pull interesting information from the table that basic queries cannot track.
+In the next few parts, you'll query data from a table populated with Babe Ruth's career hitting statistics. You'll use aggregate functions to pull interesting information from the table that basic queries cannot track.
 
 Table Name: babe_ruth_stats
 # CodeGrade step0
@@ -178,6 +178,10 @@ df_teams_years = pd.read_sql("""
                              FROM babe_ruth_stats
                              GROUP BY team;
                              """,conn3)
+with open('main.py', 'r') as f:
+    for i, line in enumerate(f.readlines(), 1):
+        if not line.startswith('#') and not line.startswith('import') and not line.strip() == '' and not line.strip().startswith('pd.') and not line.strip().startswith('conn') and not line.strip().startswith('def ') and not line.strip().startswith('SELECT') and not line.strip().startswith('"') and not line.strip().startswith("'"):
+            print(f"Line {i}: {line}", end='')
 ### Step 12
 
 For each team that Babe Ruth played on and averged over 200 at bats with, return the team name and average number of at bats, aliased as 'average_at_bats'.
@@ -190,6 +194,27 @@ df_at_bats = pd.read_sql("""
                          GROUP BY team
                          HAVING average_at_bats >200;
                          """,conn3)
+problem_lines = [8, 11, 12, 13, 14, 15, 16, 19, 21, 36, 46, 58, 68, 78, 87, 89, 101, 110, 121, 135, 137, 151, 161, 172, 183]
+
+with open('main.py', 'r') as f:
+    lines = f.readlines()
+
+for i in problem_lines:
+    line_idx = i - 1
+    if not lines[line_idx].startswith('#'):
+        lines[line_idx] = '# ' + lines[line_idx]
+
+with open('main.py', 'w') as f:
+    f.writelines(lines)
+
+print("Done! Verifying...")
+
+import py_compile
+try:
+    py_compile.compile('main.py', doraise=True)
+    print("✅ No syntax errors — safe to push!")
+except py_compile.PyCompileError as e:
+    print(f"❌ Still has errors: {e}")
 #### Close the connections
 # Run this cell without changes
 
