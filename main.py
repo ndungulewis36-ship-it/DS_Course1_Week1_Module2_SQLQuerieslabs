@@ -1,8 +1,8 @@
 # Introduction
 
-In this lab assessment you will explore writing more advanced SQL queries aimed at analyzing data on a more granular level. You will be working with 3 different databases throughout the assessment.
-- planets.db: Contains data pertaining to planets in our solar system
-- dogs.db: Contains data pertaining to famous fictional dog characters
+#In this lab assessment you will explore writing more advanced SQL queries aimed at analyzing data on a more granular level. You will be working with 3 different databases throughout the assessment.
+#- planets.db: Contains data pertaining to planets in our solar system
+#- dogs.db: Contains data pertaining to famous fictional dog characters
 # - babe_ruth.db: Contains data pertaining to Babe Ruth's baseball career statistics
 
 SQL (Structured Query Language) provides powerful tools for manipulating and analyzing data in relational databases. Four key operations for working with data are filtering, ordering, limiting, and grouping. These operations can be combined in a single query to perform complex data analysis and extraction tasks, allowing for powerful and flexible data manipulation.
