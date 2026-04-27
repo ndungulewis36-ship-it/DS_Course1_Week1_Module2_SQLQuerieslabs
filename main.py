@@ -1,11 +1,11 @@
 # Introduction
 
-In this lab assessment you will explore writing more advanced SQL queries aimed at analyzing data on a more granular level. You will be working with 3 different databases throughout the assessment.
+# In this lab assessment you will explore writing more advanced SQL queries aimed at analyzing data on a more granular level. You will be working with 3 different databases throughout the assessment.
 - planets.db: Contains data pertaining to planets in our solar system
 - dogs.db: Contains data pertaining to famous fictional dog characters
 - babe_ruth.db: Contains data pertaining to Babe Ruth's baseball career statistics
 
-SQL (Structured Query Language) provides powerful tools for manipulating and analyzing data in relational databases. Four key operations for working with data are filtering, ordering, limiting, and grouping. These operations can be combined in a single query to perform complex data analysis and extraction tasks, allowing for powerful and flexible data manipulation.
+# SQL (Structured Query Language) provides powerful tools for manipulating and analyzing data in relational databases. Four key operations for working with data are filtering, ordering, limiting, and grouping. These operations can be combined in a single query to perform complex data analysis and extraction tasks, allowing for powerful and flexible data manipulation.
 ## Learning Objectives
 
 * Retrieve a subset of records from a table using a WHERE clause
@@ -16,9 +16,9 @@ SQL (Structured Query Language) provides powerful tools for manipulating and ana
 * Use Group BY statements in SQL to apply aggregate functions
 ## Part I: Basic Filtering
 
-You will begin by looking at the planets data to perform some basic filtering queries.
+# You will begin by looking at the planets data to perform some basic filtering queries.
 
-Table Name: planets
+# Table Name: planets
 # CodeGrade step0
 
 # Run this cell without changes
@@ -33,7 +33,7 @@ conn1 = sqlite3.connect('planets.db')
 # Select all
 pd.read_sql("""SELECT * FROM planets; """, conn1)
 ### Step 1
-Return all the columns for planets that have 0 moons.
+# Return all the columns for planets that have 0 moons.
 # CodeGrade step1
 # Replace None with your code
 df_no_moons = pd.read_sql("""
@@ -43,19 +43,19 @@ df_no_moons = pd.read_sql("""
                           
                           """,conn1)
 ### Step 2
-Return the name and mass of each planet that has a name with exactly 7 letters. Avoid hard coding this filter subset as much as possible.
+# Return the name and mass of each planet that has a name with exactly 7 letters. Avoid hard coding this filter subset as much as possible.
 # CodeGrade step2
 # Replace None with your code
 df_name_seven = pd.read_sql("""
                             SELECT name,mass,
-                            length(name) AS name_length
+#                             length(name) AS name_length
                             FROM planets
                             WHERE name_length=7;
                             """,conn1)
 ## Part 2: Advanced Filtering
 ### Step 3
 
-Return the name and mass for each planet that has a mass that is less than or equal to 1.00.
+# Return the name and mass for each planet that has a mass that is less than or equal to 1.00.
 # CodeGrade step3
 # Replace None with your code
 df_mass = pd.read_sql("""
@@ -65,7 +65,7 @@ df_mass = pd.read_sql("""
                       """, conn1)
 ### Step 4
 
-Return all the columns for planets that have at least one moon and a mass less than 1.00.
+# Return all the columns for planets that have at least one moon and a mass less than 1.00.
 # CodeGrade step4
 # Replace None with your code
 df_mass_moon = pd.read_sql("""
@@ -75,7 +75,7 @@ df_mass_moon = pd.read_sql("""
                            """, conn1)
 ### Step 5
 
-Return the name and color of planets that have a color containing the string "blue".
+# Return the name and color of planets that have a color containing the string "blue".
 # CodeGrade step5
 # Replace None with your code
 df_blue = pd.read_sql("""
@@ -84,9 +84,9 @@ df_blue = pd.read_sql("""
                       WHERE color="blue";
                       """,conn1)
 ## Part 3: Ordering and Limiting
-This database has some fictional, yet generally famous, dogs.
+# This database has some fictional, yet generally famous, dogs.
 
-Table Name: dogs
+# Table Name: dogs
 # CodeGrade step0
 
 # Run this cell without changes
@@ -98,7 +98,7 @@ conn2 = sqlite3.connect('dogs.db')
 # Select all
 pd.read_sql("SELECT * FROM dogs;", conn2)
 ### Step 6
-Return the name, age, and breed of all dogs that are hungry (binary flag of 1) and sort them from youngest to oldest.
+# Return the name, age, and breed of all dogs that are hungry (binary flag of 1) and sort them from youngest to oldest.
 # CodeGrade step6
 # Replace None with your code
 df_hungry = pd.read_sql("""
@@ -107,7 +107,7 @@ df_hungry = pd.read_sql("""
                         WHERE hungry=1;
                         """,conn2)
 ### Step 7
-Return the name, age, and hungry columns for hungry dogs between the ages of two and seven. This query should also sort these dogs in alphabetical order.
+# Return the name, age, and hungry columns for hungry dogs between the ages of two and seven. This query should also sort these dogs in alphabetical order.
 # CodeGrade step7
 # Replace None with your code
 df_hungry_ages = pd.read_sql("""
@@ -118,7 +118,7 @@ df_hungry_ages = pd.read_sql("""
                              """, conn2)
 ### Step 8
 
-Return the name, age, and breed for the 4 oldest dogs. Sort the result alphabetically based on the breed.
+# Return the name, age, and breed for the 4 oldest dogs. Sort the result alphabetically based on the breed.
 # CodeGrade step8
 # Replace None with your code
 df_4_oldest = pd.read_sql("""
@@ -132,9 +132,9 @@ df_4_oldest = pd.read_sql("""
                           ORDER by breed ASC;
                           """, conn2)
 ## Part 4: Aggregation
-In the next few parts, you'll query data from a table populated with Babe Ruth's career hitting statistics. You'll use aggregate functions to pull interesting information from the table that basic queries cannot track.
+# In the next few parts, you'll query data from a table populated with Babe Ruth's career hitting statistics. You'll use aggregate functions to pull interesting information from the table that basic queries cannot track.
 
-Table Name: babe_ruth_stats
+# Table Name: babe_ruth_stats
 # CodeGrade step0
 
 # Run this cell without changes
@@ -148,7 +148,7 @@ pd.read_sql("""
 SELECT * FROM babe_ruth_stats; """, conn3)
 ### Step 9
 
-Return the total number of years that Babe Ruth played professional baseball
+# Return the total number of years that Babe Ruth played professional baseball
 # CodeGrade step9
 # Replace None with your code
 df_ruth_years = pd.read_sql("""
@@ -158,34 +158,34 @@ df_ruth_years = pd.read_sql("""
 
 ### Step 10
 
-Return the total number of homeruns hit by Babe Ruth during his career.
+# Return the total number of homeruns hit by Babe Ruth during his career.
 # CodeGrade step10
 # Replace None with your code
 df_hr_total = pd.read_sql("""
                           SELECT 
-                          SUM(runs) AS total_homeruns
+#                           SUM(runs) AS total_homeruns
                           FROM babe_ruth_stats;
                           """, conn3)
 ## Part 5: Grouping and Aggregation
 ### Step 11
 
-For each team that Babe Ruth has played on, return the team name and the number of years he played on that team, aliased as 'number_years'.
+# For each team that Babe Ruth has played on, return the team name and the number of years he played on that team, aliased as 'number_years'.
 # CodeGrade step11
 # Replace None with your code
 df_teams_years = pd.read_sql("""
                              SELECT team,
-                             COUNT(*) AS number_years
+#                              COUNT(*) AS number_years
                              FROM babe_ruth_stats
                              GROUP BY team;
                              """,conn3)
 ### Step 12
 
-For each team that Babe Ruth played on and averged over 200 at bats with, return the team name and average number of at bats, aliased as 'average_at_bats'.
+# For each team that Babe Ruth played on and averged over 200 at bats with, return the team name and average number of at bats, aliased as 'average_at_bats'.
 # CodeGrade step12
 # Replace None with your code
 df_at_bats = pd.read_sql("""
                          SELECT team,
-                         AVG(at_bats) AS average_at_bats
+#                          AVG(at_bats) AS average_at_bats
                          FROM babe_ruth_stats
                          GROUP BY team
                          HAVING average_at_bats >200;
@@ -198,30 +198,30 @@ conn2.close()
 conn3.close()
 import nbformat
 
-with open('main.ipynb', 'r', encoding='utf-8') as f:
-    nb = nbformat.read(f, as_version=4)
+# with open('main.ipynb', 'r', encoding='utf-8') as f:
+#     nb = nbformat.read(f, as_version=4)
 
 # Remove cells 36, 37 (0-indexed) - the leftover debug cells
 # Cell 37 = index 36, Cell 38 = index 37
-nb.cells = [cell for i, cell in enumerate(nb.cells) 
-            if i not in [36, 37]]
+# nb.cells = [cell for i, cell in enumerate(nb.cells) 
+#             if i not in [36, 37]]
 
-with open('main.ipynb', 'w', encoding='utf-8') as f:
-    nbformat.write(nb, f)
+# with open('main.ipynb', 'w', encoding='utf-8') as f:
+#     nbformat.write(nb, f)
 
-print("Removed debug cells. Verifying remaining cells:")
-for i, cell in enumerate(nb.cells):
-    print(f"Cell {i+1} | Type: {cell.cell_type} | Preview: {cell.source[:50]}")
+# print("Removed debug cells. Verifying remaining cells:")
+# for i, cell in enumerate(nb.cells):
+#     print(f"Cell {i+1} | Type: {cell.cell_type} | Preview: {cell.source[:50]}")
 import nbformat
 
-with open('main.ipynb', 'r', encoding='utf-8') as f:
-    nb = nbformat.read(f, as_version=4)
+# with open('main.ipynb', 'r', encoding='utf-8') as f:
+#     nb = nbformat.read(f, as_version=4)
 
 # Remove cells 39 and 40 (0-indexed = 38 and 39)
-nb.cells = nb.cells[:38]
+# nb.cells = nb.cells[:38]
 
-with open('main.ipynb', 'w', encoding='utf-8') as f:
-    nbformat.write(nb, f)
+# with open('main.ipynb', 'w', encoding='utf-8') as f:
+#     nbformat.write(nb, f)
 
-print(f"Done! Total cells remaining: {len(nb.cells)}")
-print(f"Last cell preview: {nb.cells[-1].source[:80]}")
+# print(f"Done! Total cells remaining: {len(nb.cells)}")
+# print(f"Last cell preview: {nb.cells[-1].source[:80]}")
