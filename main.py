@@ -178,10 +178,6 @@ df_teams_years = pd.read_sql("""
                              FROM babe_ruth_stats
                              GROUP BY team;
                              """,conn3)
-with open('main.py', 'r') as f:
-    for i, line in enumerate(f.readlines(), 1):
-        if not line.startswith('#') and not line.startswith('import') and not line.strip() == '' and not line.strip().startswith('pd.') and not line.strip().startswith('conn') and not line.strip().startswith('def ') and not line.strip().startswith('SELECT') and not line.strip().startswith('"') and not line.strip().startswith("'"):
-            print(f"Line {i}: {line}", end='')
 ### Step 12
 
 For each team that Babe Ruth played on and averged over 200 at bats with, return the team name and average number of at bats, aliased as 'average_at_bats'.
@@ -194,30 +190,38 @@ df_at_bats = pd.read_sql("""
                          GROUP BY team
                          HAVING average_at_bats >200;
                          """,conn3)
-problem_lines = [8, 11, 12, 13, 14, 15, 16, 19, 21, 36, 46, 58, 68, 78, 87, 89, 101, 110, 121, 135, 137, 151, 161, 172, 183]
-
-with open('main.py', 'r') as f:
-    lines = f.readlines()
-
-for i in problem_lines:
-    line_idx = i - 1
-    if not lines[line_idx].startswith('#'):
-        lines[line_idx] = '# ' + lines[line_idx]
-
-with open('main.py', 'w') as f:
-    f.writelines(lines)
-
-print("Done! Verifying...")
-
-import py_compile
-try:
-    py_compile.compile('main.py', doraise=True)
-    print("✅ No syntax errors — safe to push!")
-except py_compile.PyCompileError as e:
-    print(f"❌ Still has errors: {e}")
 #### Close the connections
 # Run this cell without changes
 
 conn1.close()
 conn2.close()
 conn3.close()
+import nbformat
+
+with open('main.ipynb', 'r', encoding='utf-8') as f:
+    nb = nbformat.read(f, as_version=4)
+
+# Remove cells 36, 37 (0-indexed) - the leftover debug cells
+# Cell 37 = index 36, Cell 38 = index 37
+nb.cells = [cell for i, cell in enumerate(nb.cells) 
+            if i not in [36, 37]]
+
+with open('main.ipynb', 'w', encoding='utf-8') as f:
+    nbformat.write(nb, f)
+
+print("Removed debug cells. Verifying remaining cells:")
+for i, cell in enumerate(nb.cells):
+    print(f"Cell {i+1} | Type: {cell.cell_type} | Preview: {cell.source[:50]}")
+import nbformat
+
+with open('main.ipynb', 'r', encoding='utf-8') as f:
+    nb = nbformat.read(f, as_version=4)
+
+# Remove cells 39 and 40 (0-indexed = 38 and 39)
+nb.cells = nb.cells[:38]
+
+with open('main.ipynb', 'w', encoding='utf-8') as f:
+    nbformat.write(nb, f)
+
+print(f"Done! Total cells remaining: {len(nb.cells)}")
+print(f"Last cell preview: {nb.cells[-1].source[:80]}")
