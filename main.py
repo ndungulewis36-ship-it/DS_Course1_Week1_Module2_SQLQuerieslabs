@@ -48,9 +48,9 @@ df_no_moons = pd.read_sql("""
 # Replace None with your code
 df_name_seven = pd.read_sql("""
                             SELECT name,mass,
-#                             length(name) AS name_length
+                             length(name) AS name_length
                             FROM planets
-                            WHERE name_length=7;
+                            WHERE lenght(name)=7;
                             """,conn1)
 # ## Part 2: Advanced Filtering
 # ### Step 3
@@ -104,7 +104,8 @@ pd.read_sql("SELECT * FROM dogs;", conn2)
 df_hungry = pd.read_sql("""
                         SELECT name,age,breed 
                         FROM dogs
-                        WHERE hungry=1;
+                        WHERE hungry=1
+                        ORDER BY age;
                         """,conn2)
 # ### Step 7
 # Return the name, age, and hungry columns for hungry dogs between the ages of two and seven. This query should also sort these dogs in alphabetical order.
@@ -163,7 +164,7 @@ df_ruth_years = pd.read_sql("""
 # Replace None with your code
 df_hr_total = pd.read_sql("""
                           SELECT 
-#                           SUM(runs) AS total_homeruns
+                           SUM(runs) AS total_homeruns
                           FROM babe_ruth_stats;
                           """, conn3)
 # ## Part 5: Grouping and Aggregation
@@ -174,7 +175,7 @@ df_hr_total = pd.read_sql("""
 # Replace None with your code
 df_teams_years = pd.read_sql("""
                              SELECT team,
-#                              COUNT(*) AS number_years
+                             COUNT(*) AS number_years
                              FROM babe_ruth_stats
                              GROUP BY team;
                              """,conn3)
@@ -185,7 +186,7 @@ df_teams_years = pd.read_sql("""
 # Replace None with your code
 df_at_bats = pd.read_sql("""
                          SELECT team,
-#                          AVG(at_bats) AS average_at_bats
+                          AVG(at_bats) AS average_at_bats
                          FROM babe_ruth_stats
                          GROUP BY team
                          HAVING average_at_bats >200;
