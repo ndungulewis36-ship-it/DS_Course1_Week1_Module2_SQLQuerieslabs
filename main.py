@@ -197,7 +197,6 @@ df_at_bats = pd.read_sql("""
 conn1.close()
 conn2.close()
 conn3.close()
-import nbformat
 
 # with open('main.ipynb', 'r', encoding='utf-8') as f:
 #     nb = nbformat.read(f, as_version=4)
@@ -213,7 +212,6 @@ import nbformat
 # print("Removed debug cells. Verifying remaining cells:")
 # for i, cell in enumerate(nb.cells):
 #     print(f"Cell {i+1} | Type: {cell.cell_type} | Preview: {cell.source[:50]}")
-import nbformat
 
 # with open('main.ipynb', 'r', encoding='utf-8') as f:
 #     nb = nbformat.read(f, as_version=4)
