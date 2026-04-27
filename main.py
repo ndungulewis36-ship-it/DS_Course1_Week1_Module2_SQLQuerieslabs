@@ -50,7 +50,7 @@ df_name_seven = pd.read_sql("""
                             SELECT name,mass,
                              length(name) AS name_length
                             FROM planets
-                            WHERE lenght(name)=7;
+                            WHERE length(name)=7;
                             """,conn1)
 # ## Part 2: Advanced Filtering
 # ### Step 3
