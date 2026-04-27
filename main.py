@@ -47,8 +47,7 @@ df_no_moons = pd.read_sql("""
 # CodeGrade step2
 # Replace None with your code
 df_name_seven = pd.read_sql("""
-                            SELECT name,mass,
-                             length(name) AS name_length
+                            SELECT name,mass
                             FROM planets
                             WHERE length(name)=7;
                             """,conn1)
@@ -81,7 +80,7 @@ df_mass_moon = pd.read_sql("""
 df_blue = pd.read_sql("""
                       SELECT name,color
                       FROM planets
-                      WHERE color="blue";
+                      WHERE color LIKE '%blue%';
                       """,conn1)
 # ## Part 3: Ordering and Limiting
 # This database has some fictional, yet generally famous, dogs.
@@ -128,7 +127,8 @@ df_4_oldest = pd.read_sql("""
                           SELECT name,age,breed
                           FROM dogs
                           ORDER BY age DESC
-                          LIMIT 4)
+                          LIMIT 4 
+                          )
                           
                           ORDER by breed ASC;
                           """, conn2)
@@ -164,7 +164,7 @@ df_ruth_years = pd.read_sql("""
 # Replace None with your code
 df_hr_total = pd.read_sql("""
                           SELECT 
-                           SUM(runs) AS total_homeruns
+                           SUM(HR) AS total_homeruns
                           FROM babe_ruth_stats;
                           """, conn3)
 # ## Part 5: Grouping and Aggregation
